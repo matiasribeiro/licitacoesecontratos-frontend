@@ -4,7 +4,9 @@
   padding: 0;
 }
 
-
+.display-4 {
+  font-size: 2em  !important;
+}
 
 /* ------------------------------ RODAPÈ -------------------------------*/
 #myFooter {
@@ -80,18 +82,6 @@
   float:right;
 }
 
-
-#myFooter .facebook:hover {
-  color: #0077e2;
-}
-
-#myFooter .instagram:hover {
-  color: purple;
-}
-
-#myFooter .twitter:hover {
-  color: #00aced;
-}
 
 @media screen and (max-width: 767px) {
   #myFooter {

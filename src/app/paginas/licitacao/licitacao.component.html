@@ -68,22 +68,30 @@
 
           <div class="containerInfo">
             <div class="row">
-              <div class="col-sm-2">
-                <div>Modalidade: </div>
+
+              <div class="col-sm-3">
+                <span class="desktop-hidden">Objetivo: </span>
+              </div>
+              <div class="col-sm-9">
+                <span class="desktop-hidden">{{ row.objetivo}}</span>
+              </div>
+
+              <div class="col-sm-3">
+                <span class="desktop-hidden">Modalidade: </span>
               </div>
 
               <div class="col-sm-9">
-                {{ row.modalidade}}
+                <span class="desktop-hidden">{{ row.modalidade}}</span>
               </div>
             </div>
 
             <div class="row">
-              <div class="col-sm-2">
-                <div>Valor Licitado: </div>
+              <div class="col-sm-3">
+                <span class="desktop-hidden">Valor Licitado: </span>
               </div>
-
               <div class="col-sm-9">
-                {{ formatarMoeda(row.valorLicitado)}}
+                <span class="desktop-hidden">{{ formatarMoeda(row.valorLicitado)}}</span>
+
               </div>
             </div>
 
@@ -119,7 +127,7 @@
       <ngx-datatable-column
             prop="column.numero"
             name="Número"
-            [flexGrow]="8"
+            [flexGrow]="1"
             [sortable]="true"
       >
         <ng-template let-value="row.numero" ngx-datatable-cell-template>
@@ -127,17 +135,33 @@
         </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column
-        prop="column.objetivo"
-        name="Objetivo"
-        [flexGrow]="10"
-        [sortable]="true"
-      >
-
-        <ng-template let-value="row.objetivo" ngx-datatable-cell-template>
-          {{ value  }}
+      <ngx-datatable-column name="Objetivo" [flexGrow]="1">
+        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+          <span class="mobile-hidden">{{ column.name }}</span>
+        </ng-template>
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          <span class="mobile-hidden">{{ value }}</span>
         </ng-template>
       </ngx-datatable-column>
+
+      <ngx-datatable-column name="Modalidade" [flexGrow]="1">
+        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+          <span class="mobile-hidden">{{ column.name }}</span>
+        </ng-template>
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          <span class="mobile-hidden">{{ value }}</span>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Valor Licitado" [flexGrow]="1">
+        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+          <span class="mobile-hidden">{{ column.name }}</span>
+        </ng-template>
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          <span class="mobile-hidden">{{ formatarMoeda(value) }}</span>
+        </ng-template>
+      </ngx-datatable-column>
+
 
 
 </ngx-datatable>

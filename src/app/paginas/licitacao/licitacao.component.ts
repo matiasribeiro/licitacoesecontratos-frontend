@@ -117,6 +117,7 @@ export class LicitacaoComponent implements OnInit {
   }
 
 
-
+  onDetailToggle(event) {
+  }
 
 }
