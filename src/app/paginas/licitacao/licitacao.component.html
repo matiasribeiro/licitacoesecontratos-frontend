@@ -8,7 +8,7 @@
         <div class="row">
 
 
-          <div class="col-6">
+          <div class="col-sm-6">
 
             <input  id="inputBusca"
                     class="form-control form-control-lg"
@@ -21,7 +21,7 @@
             </div>
 
 
-            <div class="col-6">
+            <div class="col-sm-6">
               <input  id="inputBusca"
                       class="form-control form-control-lg"
                       formControlName="assuntoBusca"
@@ -32,11 +32,11 @@
               />
               </div>
 
-              <div class="col-6">
+              <div class="col-sm-6">
                 <app-mensagens  [control]="formGroup.numeroBusca" label="Número da Licitação"></app-mensagens>
               </div>
 
-              <div class="col-6">
+              <div class="col-sm-6">
                 <app-mensagens  [control]="formGroup.assuntoBusca" label="Assunto da Licitação"></app-mensagens>
               </div>
 
@@ -97,6 +97,7 @@
           <!-- Column Templates -->
           <ngx-datatable-column
           [width]="90"
+          [flexGrow]="1"
           [resizeable]="false"
           [sortable]="false"
           [draggable]="false"
@@ -118,7 +119,7 @@
       <ngx-datatable-column
             prop="column.numero"
             name="Número"
-            [flexGrow]="2"
+            [flexGrow]="7"
             [sortable]="true"
       >
         <ng-template let-value="row.numero" ngx-datatable-cell-template>
