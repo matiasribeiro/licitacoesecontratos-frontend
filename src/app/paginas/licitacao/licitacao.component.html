@@ -1,0 +1,145 @@
+
+
+<div class="content">
+
+  <div class="container">
+    <div id="cxBuscaNumeroLicitacao">
+      <form [formGroup]="formulario">
+        <div class="row">
+
+
+          <div class="col-6">
+
+            <input  id="inputBusca"
+                    class="form-control form-control-lg"
+                    formControlName="numeroBusca"
+                    type="text"
+
+                    placeholder="Busca pelo número da licitação"
+                    (keyup)="updateFilterNumero()"
+            />
+            </div>
+
+
+            <div class="col-6">
+              <input  id="inputBusca"
+                      class="form-control form-control-lg"
+                      formControlName="assuntoBusca"
+                      type="text"
+
+                      placeholder="Busca pelo assunto da licitação"
+                      (keyup)="updateFilterObjetivo()"
+              />
+              </div>
+
+              <div class="col-6">
+                <app-mensagens  [control]="formGroup.numeroBusca" label="Número da Licitação"></app-mensagens>
+              </div>
+
+              <div class="col-6">
+                <app-mensagens  [control]="formGroup.assuntoBusca" label="Assunto da Licitação"></app-mensagens>
+              </div>
+
+          </div>
+        </form>
+      </div>
+  </div>
+
+
+
+  <ngx-datatable
+    #tabelaLicitacao
+    class="dark"
+    [columnMode]="ColumnMode.flex"
+    [headerHeight]="50"
+    [footerHeight]="50"
+    rowHeight="auto"
+    [limit]="10"
+    [rows]="rows"
+    [selected]="selected"
+    [selectionType]="SelectionType.single"
+    [messages]="{emptyMessage: 'Nenhuma Licitação sobre o filtro de busca!'}"
+>
+
+ <!-- Row Detail Template -->
+ <ngx-datatable-row-detail rowHeight="auto" #myDetailRow >
+  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+    <div >
+
+          <div class="containerInfo">
+            <div class="row">
+              <div class="col-sm-2">
+                <div>Modalidade: </div>
+              </div>
+
+              <div class="col-sm-9">
+                {{ row.modalidade}}
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-2">
+                <div>Valor Licitado: </div>
+              </div>
+
+              <div class="col-sm-9">
+                {{ formatarMoeda(row.valorLicitado)}}
+              </div>
+            </div>
+
+          </div>
+
+
+    </div>
+  </ng-template>
+</ngx-datatable-row-detail>
+
+          <!-- Column Templates -->
+          <ngx-datatable-column
+          [width]="90"
+          [resizeable]="false"
+          [sortable]="false"
+          [draggable]="false"
+          [canAutoResize]="false"
+        >
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            <a
+              href="javascript:void(0)"
+              [class.datatable-icon-right]="!expanded"
+              [class.datatable-icon-down]="expanded"
+              title="Expand/Collapse Row"
+              (click)="toggleExpandRow(row)"
+            >
+            </a>
+          </ng-template>
+        </ngx-datatable-column>
+
+
+      <ngx-datatable-column
+            prop="column.numero"
+            name="Número"
+            [flexGrow]="2"
+            [sortable]="true"
+      >
+        <ng-template let-value="row.numero" ngx-datatable-cell-template>
+          {{ value  }}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column
+        prop="column.objetivo"
+        name="Objetivo"
+        [flexGrow]="12"
+        [sortable]="true"
+      >
+
+        <ng-template let-value="row.objetivo" ngx-datatable-cell-template>
+          {{ value  }}
+        </ng-template>
+      </ngx-datatable-column>
+
+
+</ngx-datatable>
+</div>
+
+

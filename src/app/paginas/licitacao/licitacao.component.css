@@ -1,0 +1,33 @@
+
+
+datatable-body.datatable-body {
+  font-size: 18px;
+}
+
+input.inputNumero {
+  font-size: 18px;
+  width: 100% !important;
+}
+
+div#cxBuscaNumeroLicitacao {
+  padding: 1em;
+}
+
+input#inputBusca {
+  margin: 1%;
+}
+
+
+.datatable-header-cell {
+  padding: .9rem 1.2rem;
+  font-weight: 400;
+  vertical-align: bottom;
+  font-size: 18px;
+}
+
+.containerInfo {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-left: 6%;
+  width: 90%;
+}
