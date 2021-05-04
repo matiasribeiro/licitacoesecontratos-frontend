@@ -1,3 +1,5 @@
+import { element } from 'protractor';
+import { Contratos } from './../../modelos/contratos';
 import { ServicosService } from './../../servicos.service';
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ColumnMode, DatatableComponent, SelectionType } from '@swimlane/ngx-datatable';
@@ -24,6 +26,7 @@ export class LicitacaoComponent implements OnInit {
 
   formulario: FormGroup;
 
+  contratos: Contratos;
 
   constructor(
     private servicos : ServicosService,
@@ -37,10 +40,19 @@ export class LicitacaoComponent implements OnInit {
 
   }
 
+
+  myFunction(a,b,c){
+
+
+    const teste = a.concat({a,b, c});
+    console.log(teste)
+
+  }
   ngOnInit(): void {
 
     this.servicos.consultarLicitacoes()
     .subscribe(dados => {
+
        // cache our list
        this.temp = [...dados];
 
@@ -56,6 +68,8 @@ export class LicitacaoComponent implements OnInit {
       assuntoBusca: ['', [
                             Validators.maxLength(40),
       ] ],
+
+
 
     })
   }
@@ -107,8 +121,15 @@ export class LicitacaoComponent implements OnInit {
   }
 
   formatarMoeda(moeda): any {
-    const intl = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
-    return intl.format(moeda);
+
+    if(moeda === ''){
+      return '';
+    }
+    if((moeda != undefined)){
+      const intl = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
+      moeda = intl.format(moeda);
+    }
+    return moeda;
   }
 
 
