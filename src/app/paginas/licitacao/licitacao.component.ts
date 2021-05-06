@@ -53,6 +53,9 @@ export class LicitacaoComponent implements OnInit {
     this.servicos.consultarLicitacoes()
     .subscribe(dados => {
 
+
+      console.log(dados)
+
        // cache our list
        this.temp = [...dados];
 
