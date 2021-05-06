@@ -1,9 +1,12 @@
+import { DialogComponent } from './../dialog/dialog.component';
 import { element } from 'protractor';
 import { Contratos } from './../../modelos/contratos';
 import { ServicosService } from './../../servicos.service';
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ColumnMode, DatatableComponent, SelectionType } from '@swimlane/ngx-datatable';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpEventType } from '@angular/common/http';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-licitacao',
@@ -19,6 +22,8 @@ export class LicitacaoComponent implements OnInit {
   columns: any;
   ColumnMode = ColumnMode;
 
+  renderizacao_tela = false;
+
   rows = [];
   temp = [];
   selected = [];
@@ -31,6 +36,7 @@ export class LicitacaoComponent implements OnInit {
   constructor(
     private servicos : ServicosService,
     private formBuilder: FormBuilder,
+    public dialog: MatDialog
   ) {
     this.columns = [
       { name: 'Número', prop: 'numero' },
@@ -50,13 +56,20 @@ export class LicitacaoComponent implements OnInit {
   }
   ngOnInit(): void {
 
+    this.dialog.open(DialogComponent,  {panelClass: 'myapp-no-padding-dialog'});
+
     this.servicos.consultarLicitacoes()
     .subscribe(dados => {
+
+
+
        // cache our list
        this.temp = [...dados];
 
        // push our inital complete list
        this.rows = dados;
+       this.renderizacao_tela = true;
+       this.dialog.closeAll();
     });
 
     this.formulario = this.formBuilder.group({
@@ -73,6 +86,10 @@ export class LicitacaoComponent implements OnInit {
     })
   }
 
+  openDialog() {
+
+
+  }
 
   updateFilterNumero() {
 
@@ -141,3 +158,4 @@ export class LicitacaoComponent implements OnInit {
   }
 
 }
+

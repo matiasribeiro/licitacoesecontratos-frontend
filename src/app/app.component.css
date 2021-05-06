@@ -8,6 +8,27 @@
   font-size: 2em  !important;
 }
 
+/* ------------------------------ LOGO -------------------------------*/
+
+@media screen and (max-width: 750px) {
+  .logo{
+    height: 7em;
+  }
+  ul.navbar-nav {
+    font-size: 30px;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .logo{
+    height: 7em;
+  }
+  ul.navbar-nav {
+    font-size: 30px;
+  }
+}
+
+
 /* ------------------------------ RODAPÈ -------------------------------*/
 #myFooter {
   background-color: rgb(25 32 47);

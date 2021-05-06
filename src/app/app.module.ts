@@ -10,6 +10,8 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ProgressBarModule } from 'angular-progress-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -25,7 +27,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ModalModule.forRoot(),
     PaginasModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ProgressBarModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
