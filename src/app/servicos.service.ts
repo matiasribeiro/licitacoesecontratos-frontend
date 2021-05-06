@@ -17,8 +17,7 @@ export class ServicosService {
     })
   }
 
-  #url: string = 'https://apilicitacoesecontratos.herokuapp.com'
-  url: string = "http://localhost:8080"
+  url: string = 'https://apilicitacoesecontratos.herokuapp.com'
 
     constructor(
                 private httpClient: HttpClient
