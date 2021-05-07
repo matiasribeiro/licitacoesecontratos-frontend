@@ -78,7 +78,7 @@ export class LicitacaoComponent implements OnInit {
                             Validators.maxLength(10),
       ] ],
       assuntoBusca: ['', [
-                            Validators.maxLength(40),
+                            Validators.maxLength(100),
       ] ],
 
 
@@ -156,6 +156,8 @@ export class LicitacaoComponent implements OnInit {
 
   onDetailToggle(event) {
   }
+
+
 
 }
 
