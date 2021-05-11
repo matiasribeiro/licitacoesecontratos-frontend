@@ -1,3 +1,4 @@
+import { Licitacoes } from './../../modelos/licitacao';
 import { DialogComponent } from './../dialog/dialog.component';
 import { element } from 'protractor';
 import { Contratos } from './../../modelos/contratos';
@@ -7,6 +8,8 @@ import { ColumnMode, DatatableComponent, SelectionType } from '@swimlane/ngx-dat
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpEventType } from '@angular/common/http';
 import {MatDialog} from '@angular/material/dialog';
+import { from, Observable } from 'rxjs';
+import { publishReplay, refCount } from 'rxjs/operators';
 
 @Component({
   selector: 'app-licitacao',
@@ -23,6 +26,8 @@ export class LicitacaoComponent implements OnInit {
   ColumnMode = ColumnMode;
 
   renderizacao_tela = false;
+
+  licitacoes$: Observable<any>;
 
   rows = [];
   temp = [];
@@ -42,35 +47,28 @@ export class LicitacaoComponent implements OnInit {
       { name: 'Número', prop: 'numero' },
       { name: 'Objetivo', prop:'objetivo' }
     ];
-
-
   }
 
 
-  myFunction(a,b,c){
 
 
-    const teste = a.concat({a,b, c});
-    console.log(teste)
-
-  }
   ngOnInit(): void {
 
     this.dialog.open(DialogComponent,  {panelClass: 'myapp-no-padding-dialog'});
 
-    this.servicos.consultarLicitacoes()
-    .subscribe(dados => {
 
+      this.servicos.getLicitacoes()
+      .subscribe(dados => {
 
+         // cache our list
+         this.temp = [...dados];
 
-       // cache our list
-       this.temp = [...dados];
+         // push our inital complete list
+         this.rows = dados;
+         this.renderizacao_tela = true;
+         this.dialog.closeAll();
+      });
 
-       // push our inital complete list
-       this.rows = dados;
-       this.renderizacao_tela = true;
-       this.dialog.closeAll();
-    });
 
     this.formulario = this.formBuilder.group({
 
@@ -80,8 +78,6 @@ export class LicitacaoComponent implements OnInit {
       assuntoBusca: ['', [
                             Validators.maxLength(100),
       ] ],
-
-
 
     })
   }
@@ -156,6 +152,9 @@ export class LicitacaoComponent implements OnInit {
 
   onDetailToggle(event) {
   }
+
+
+
 
 
 

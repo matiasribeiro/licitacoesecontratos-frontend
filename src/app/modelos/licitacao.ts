@@ -18,8 +18,4 @@ export interface Licitacoes {
   url: string;
   entidadeGovernamental: string;
   numeroProcesso: string;
-
-
-
-
 };

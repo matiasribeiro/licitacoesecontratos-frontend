@@ -1,8 +1,16 @@
+
 import { Injectable } from '@angular/core';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Observer, of, ReplaySubject } from 'rxjs';
 import { Licitacoes } from './modelos/licitacao';
+import { withCache, CacheBucket, HttpCacheInterceptorModule } from '@ngneat/cashew';
+import { map } from 'rxjs/operators';
+
+
+
+const API_ENDPOINT = 'https://apilicitacoesecontratos.herokuapp.com';
+/* const API_ENDPOINT = 'http://localhost:8080'; */
 
 
 @Injectable({
@@ -11,22 +19,28 @@ import { Licitacoes } from './modelos/licitacao';
 export class ServicosService {
 
 
+  configs: Observable<any>;
+  result: Observable<any>;
+
+  todosBucket = new CacheBucket();
+
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     })
   }
 
-  url: string = 'https://apilicitacoesecontratos.herokuapp.com'
-
     constructor(
                 private httpClient: HttpClient
     ) { }
 
 
-    consultarLicitacoes(): Observable<any>{
-      return this.httpClient.get<Licitacoes[]>( this.url + '/licitacoes');
+    getLicitacoes(){
+
+      return this.httpClient.get<Licitacoes[]>( API_ENDPOINT + '/licitacoes', withCache() );
     }
+
 
 
 
