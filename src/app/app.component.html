@@ -1,81 +1,65 @@
-<div class="backgroundMenu">
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <a class="navbar-brand" href="/">
-    <img class="logo" src="/assets/icones/logo.png" alt="LicitaçõesEContratos">
-  </a>
-
-  <!-- Links -->
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link active" href="/">Licitações</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link active" href="#">Contratos</a>
-    </li>
-    <li class="nav-item">
-
-    </li>
-  </ul>
-</nav>
-
-<div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h4 class="display-4">Consulta de Licitação do Governo da Paraíba e João Pessoa-PB</h4>
-    <p class="lead">Sistema para visualizar de forma integrada as informações públicas de licitação e contratos referentes ao governo da paraíba e ao município de João Pessoa - PB</p>
-  </div>
-</div>
-
-<router-outlet></router-outlet>
-
+<div class="wrapper">
+<div class="sidebar" data-color="white" >
+    <sidebar-cmp></sidebar-cmp>
 </div>
 
 
-<footer id="myFooter">
-  <div class="container">
-      <div class="row">
-          <div class="col-sm-3">
-              <h5>Inicio</h5>
-              <ul>
-                  <li><a href="/">
-                    <fa-icon [icon]="home"></fa-icon> Home</a></li>
+<div class="main-panel">
+    <navbar-cmp></navbar-cmp>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
 
-              </ul>
+    <footer id="myFooter">
+      <div class="container">
+          <div class="row">
+              <div class="col-sm-3">
+                  <h5>Inicio</h5>
+                  <ul>
+                      <li><a href="/">
+                        <fa-icon [icon]="home"></fa-icon> Home</a></li>
+
+                  </ul>
+              </div>
+              <div class="col-sm-3">
+                  <h5>Sobre nós</h5>
+                  <ul>
+                      <li><p>Mestrado Profissional em Tecnologia da Informação - <a href=" https://ifpb.edu.br/" target="_blank">IFPB</a>
+                      </p>
+                      <p>Afonso Serafim
+                        <br>
+                        Kym Kanatto
+                        <br>
+                        Matias Ribeiro
+                        <br>
+                        Ronei Oliveira
+                    </p>
+
+
+                      </li>
+
+                  </ul>
+              </div>
+              <div class="col-sm-3">
+
+                  <ul>
+
+                  </ul>
+              </div>
+              <div class="col-sm-3 info">
+                  <h5>Informações</h5>
+                  <p> Os dados apresentados refletem a contabilização efetuada pelas administrações,
+                      submetendo-se à análise de consistência e validação, e podem ser modificados quando
+                      auditados pelo TRIBUNAL DE CONTAS DO ESTADO DA PARAÍBA.
+
+                  <a  href=" https://tce.pb.gov.br/" target="_blank">TCE-PB</a>
+                </p>
+                </div>
           </div>
-          <div class="col-sm-3">
-              <h5>Sobre nós</h5>
-              <ul>
-                  <li><p>Mestrado Profissional em Tecnologia da Informação - <a href=" https://ifpb.edu.br/" target="_blank">IFPB</a>
-                  </p>
-                  <p>Afonso Serafim
-                    <br>
-                    Kym Kanatto
-                    <br>
-                    Matias Ribeiro
-                    <br>
-                    Ronei Oliveira
-                 </p>
-
-
-                  </li>
-
-              </ul>
-          </div>
-          <div class="col-sm-3">
-
-              <ul>
-
-              </ul>
-          </div>
-          <div class="col-sm-3 info">
-              <h5>Informações</h5>
-              <p> Os dados apresentados refletem a contabilização efetuada pelas administrações,
-                  submetendo-se à análise de consistência e validação, e podem ser modificados quando
-                  auditados pelo TRIBUNAL DE CONTAS DO ESTADO DA PARAÍBA.
-
-              <a  href=" https://tce.pb.gov.br/" target="_blank">TCE-PB</a>
-            </p>
-            </div>
       </div>
-  </div>
 
-</footer>
+    </footer>
+
+</div>
+</div>
+

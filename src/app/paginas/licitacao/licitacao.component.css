@@ -1,4 +1,19 @@
 
+
+
+.ngx-datatable.material.single-selection .datatable-body-row.active:hover, .ngx-datatable.material.single-selection .datatable-body-row.active:hover .datatable-row-group, .ngx-datatable.material.multi-selection .datatable-body-row.active:hover, .ngx-datatable.material.multi-selection .datatable-body-row.active:hover .datatable-row-group, .ngx-datatable.material.multi-click-selection .datatable-body-row.active:hover, .ngx-datatable.material.multi-click-selection .datatable-body-row.active:hover .datatable-row-group {
+  background-color: #b3bdd6 !important;
+  color: #fff;
+}
+
+.ngx-datatable.material.single-selection .datatable-body-row.active, .ngx-datatable.material.single-selection .datatable-body-row.active .datatable-row-group, .ngx-datatable.material.multi-selection .datatable-body-row.active, .ngx-datatable.material.multi-selection .datatable-body-row.active .datatable-row-group, .ngx-datatable.material.multi-click-selection .datatable-body-row.active, .ngx-datatable.material.multi-click-selection .datatable-body-row.active .datatable-row-group {
+  background-color: #b3bdd6 !important;
+  color: #fff;
+}
+
+
+
+
 .myapp-no-padding-dialog .mat-dialog-container {
   background-color: rgb(179, 189, 214);
 
@@ -9,7 +24,7 @@
 }
 
 datatable-body.datatable-body {
-  font-size: 18px;
+  font-size: 14px;
 }
 
 input.inputNumero {
@@ -68,7 +83,7 @@ input#inputBusca {
   .rowUrl{
     display: block;
     text-overflow: ellipsis;
-    font-size: 13px;
+    font-size: 11px;
   }
 }
 @media screen and (min-width: 750px) {

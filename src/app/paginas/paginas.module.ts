@@ -2,11 +2,13 @@ import { HttpCacheInterceptorModule, useHttpCacheLocalStorage } from '@ngneat/ca
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ServicosService } from './../servicos.service';
 import { LicitacaoComponent } from './licitacao/licitacao.component';
-import { SharedcomponentModule } from '../sharedcomponent/sharedcomponent.module';
+import { SharedModule } from '../shared/shared.module';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { DialogComponent } from './dialog/dialog.component';
+import { ContratoComponent } from './contrato/contrato.component';
+import { MenuComponent } from './menu/menu.component';
 
 var cloneDeep = require('lodash.clonedeep');
 
@@ -15,11 +17,13 @@ var cloneDeep = require('lodash.clonedeep');
 @NgModule({
   declarations: [
     LicitacaoComponent,
-    DialogComponent
+    DialogComponent,
+    ContratoComponent,
+    MenuComponent
   ],
   imports: [
     CommonModule,
-    SharedcomponentModule,
+    SharedModule,
     MatProgressBarModule,
     MatDialogModule,
     HttpCacheInterceptorModule.forRoot({

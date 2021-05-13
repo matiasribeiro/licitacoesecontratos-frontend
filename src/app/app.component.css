@@ -1,3 +1,9 @@
+
+.main-panel {
+    background-color: #b3bdd6 !important;
+}
+
+
 .backgroundMenu {
   background-color: rgb(179, 189, 214) !important;
   margin: 0;
@@ -15,7 +21,7 @@
     height: 7em;
   }
   ul.navbar-nav {
-    font-size: 25px;
+    font-size: 15px;
   }
 }
 
@@ -24,20 +30,17 @@
     height: 7em;
   }
   ul.navbar-nav {
-    font-size: 30px;
+    font-size: 20px;
   }
 }
 
 
 /* ------------------------------ RODAPÈ -------------------------------*/
 #myFooter {
-  background-color: rgb(25 32 47);
+  background-color: #272a2d;
   color: white;
 }
 
-#myFooter .row {
-  margin-bottom: 60px;
-}
 
 #myFooter .info{
   text-align: justify;

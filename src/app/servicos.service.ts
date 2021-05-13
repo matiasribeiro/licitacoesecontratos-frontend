@@ -6,11 +6,12 @@ import { Observable, Observer, of, ReplaySubject } from 'rxjs';
 import { Licitacoes } from './modelos/licitacao';
 import { withCache, CacheBucket, HttpCacheInterceptorModule } from '@ngneat/cashew';
 import { map } from 'rxjs/operators';
+import { Contratos } from './modelos/contratos';
 
 
 
-const API_ENDPOINT = 'https://apilicitacoesecontratos.herokuapp.com';
-/* const API_ENDPOINT = 'http://localhost:8080'; */
+/* const API_ENDPOINT = 'https://apilicitacoesecontratos.herokuapp.com'; */
+ const API_ENDPOINT = 'http://localhost:8080';
 
 
 @Injectable({
@@ -37,9 +38,13 @@ export class ServicosService {
 
 
     getLicitacoes(){
-
       return this.httpClient.get<Licitacoes[]>( API_ENDPOINT + '/licitacoes', withCache() );
     }
+
+    getContratos(){
+      return this.httpClient.get<Contratos[]>( API_ENDPOINT + '/contratos', withCache() );
+    }
+
 
 
 

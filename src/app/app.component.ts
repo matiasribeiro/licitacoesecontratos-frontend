@@ -9,9 +9,7 @@ import { faCoffee, faHome } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'licitacoesecontratosFrontend';
-
-  faCoffee = faCoffee;
+  title = 'Licitações e Contratos Gov-PB e JP-PB';
 
   home = faHome
 

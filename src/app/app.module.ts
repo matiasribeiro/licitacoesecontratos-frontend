@@ -1,3 +1,5 @@
+import { SidebarModule } from './sidebar/sidebar.module';
+
 import { PaginasModule } from './paginas/paginas.module';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -12,6 +14,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProgressBarModule } from 'angular-progress-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from './shared/shared.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NavbarModule } from './shared/navbar/navbar.module';
 
 
 
@@ -29,7 +34,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     FontAwesomeModule,
     ProgressBarModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    SharedModule,
+    NgbModule,
+    SidebarModule,
+    NavbarModule
   ],
   providers: [
   ],

@@ -1,7 +1,14 @@
 export interface Contratos {
 
-  nome_proponente: string;
-  numero: string;
-  fornecedor: string;
+  numeroContrato: string;
+	numeroProcessoLicitacao: string;
+	dataInicio: string;
+	dataFinal: string;
+	contratante: string;
+	fornecedor: string;
+	Objeto: string;
+	valorProposta: string;
+	cpfCnpjProponente: string;
+	numeroLicitacao: string;
 
 }

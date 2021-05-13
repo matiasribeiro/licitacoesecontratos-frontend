@@ -1,0 +1,105 @@
+
+
+.ngx-datatable.material.single-selection .datatable-body-row.active:hover, .ngx-datatable.material.single-selection .datatable-body-row.active:hover .datatable-row-group, .ngx-datatable.material.multi-selection .datatable-body-row.active:hover, .ngx-datatable.material.multi-selection .datatable-body-row.active:hover .datatable-row-group, .ngx-datatable.material.multi-click-selection .datatable-body-row.active:hover, .ngx-datatable.material.multi-click-selection .datatable-body-row.active:hover .datatable-row-group {
+  background-color: #b3bdd6 !important;
+  color: #fff;
+}
+
+.ngx-datatable.material.single-selection .datatable-body-row.active, .ngx-datatable.material.single-selection .datatable-body-row.active .datatable-row-group, .ngx-datatable.material.multi-selection .datatable-body-row.active, .ngx-datatable.material.multi-selection .datatable-body-row.active .datatable-row-group, .ngx-datatable.material.multi-click-selection .datatable-body-row.active, .ngx-datatable.material.multi-click-selection .datatable-body-row.active .datatable-row-group {
+  background-color: #b3bdd6 !important;
+  color: #fff;
+}
+
+.infoCadastro {
+  padding-top: 5%;
+  padding-left: 30%;
+}
+
+.myapp-no-padding-dialog .mat-dialog-container {
+  background-color: rgb(179, 189, 214);
+
+  border-radius: 20px;
+  color: #404040;
+  text-align: center;
+
+}
+
+datatable-body.datatable-body {
+  font-size: 14px;
+}
+
+input.inputNumero {
+  font-size: 18px;
+  width: 100% !important;
+}
+
+
+input#inputBusca {
+  margin: 1%;
+}
+
+
+.datatable-header-cell {
+  padding: .9rem 1.2rem;
+  font-weight: 400;
+  vertical-align: bottom;
+  font-size: 18px;
+}
+
+.containerInfo {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-left: 6%;
+  width: 90%;
+}
+
+
+.col-sm-9 {
+  padding-right: 25% !important;
+  text-align: justify !important;
+}
+
+
+
+/* ---------------------- datatable responsivo ---------------------------*/
+
+@media screen and (max-width: 750px) {
+  .desktop-hidden {
+    display: initial;
+  }
+  .mobile-hidden {
+    display: none;
+  }
+  .linha{
+    height:0;
+    width:100%;
+    margin-right: 22%;
+    border:1px solid #4e69b1;
+    margin-top: 1%;
+    margin-bottom: 1%;
+  }
+  .rowUrl{
+    display: block;
+    text-overflow: ellipsis;
+    font-size: 13px;
+  }
+}
+@media screen and (min-width: 750px) {
+  .desktop-hidden {
+    display: none;
+  }
+  .mobile-hidden {
+    display: initial;
+  }
+  .linha{
+    height:0;
+    width:100%;
+    border:1px solid #4e69b1;
+    margin-top: 1%;
+    margin-bottom: 1%;
+  }
+  .rowUrl{
+    display: block;
+    text-overflow: ellipsis;
+  }
+}

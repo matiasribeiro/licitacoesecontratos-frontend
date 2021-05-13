@@ -59,7 +59,6 @@ export class LicitacaoComponent implements OnInit {
 
       this.servicos.getLicitacoes()
       .subscribe(dados => {
-
          // cache our list
          this.temp = [...dados];
 
@@ -82,10 +81,7 @@ export class LicitacaoComponent implements OnInit {
     })
   }
 
-  openDialog() {
 
-
-  }
 
   updateFilterNumero() {
 
