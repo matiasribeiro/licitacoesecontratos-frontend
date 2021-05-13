@@ -67,7 +67,6 @@ export class NavbarComponent implements OnInit{
           this.sidebarVisible = true;
       };
       sidebarClose() {
-        console.log("---------------------------------------------------------------------------------")
           const html = document.getElementsByTagName('html')[0];
           const mainPanel =  <HTMLElement>document.getElementsByClassName('main-panel')[0];
           if (window.innerWidth < 991) {
