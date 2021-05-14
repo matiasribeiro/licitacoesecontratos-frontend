@@ -43,7 +43,7 @@ export class ServicosService {
     }
 
     getContratos(){
-      return this.httpClient.get<Contratos[]>( API_ENDPOINT + '/contratos', withCache() );
+      return this.httpClient.get<Contratos[]>( API_ENDPOINT + '/contratos' );
     }
 
 
