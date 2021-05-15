@@ -39,7 +39,7 @@ export class ServicosService {
 
 
     getLicitacoes(){
-      return this.httpClient.get<Licitacoes[]>( API_ENDPOINT + '/licitacoes', withCache() );
+      return this.httpClient.get<Licitacoes[]>( API_ENDPOINT + '/licitacoes');
     }
 
     getContratos(){
