@@ -42,6 +42,7 @@ export class ServicosService {
       return this.httpClient.get<Licitacoes[]>( API_ENDPOINT + '/licitacoes');
     }
 
+
     getContratos(){
       return this.httpClient.get<Contratos[]>( API_ENDPOINT + '/contratos' );
     }
