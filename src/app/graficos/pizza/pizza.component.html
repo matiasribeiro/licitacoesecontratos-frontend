@@ -1,0 +1,26 @@
+
+<div class="card ">
+  <div class="card-header ">
+    <h5 class="card-title">{{ titulo }}</h5>
+  </div>
+  <div class="card-body ">
+    <div class="chart-wrapper">
+      <canvas baseChart
+
+        width="600"
+        [data]="pizzaOrgaoChartData"
+        [labels]="pizzaOrgaoChartLabels"
+        [chartType]="pieChartType"
+        [options]="pieChartOptions"
+        [plugins]="pieChartPlugins"
+        [colors]="pieChartColors"
+        [legend]="pieChartLegend">
+      </canvas>
+    </div>
+  </div>
+  <div class="card-footer ">
+
+  </div>
+</div>
+
+

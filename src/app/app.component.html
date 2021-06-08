@@ -1,0 +1,65 @@
+<div class="wrapper">
+<div class="sidebar" data-color="white" >
+    <sidebar-cmp></sidebar-cmp>
+</div>
+
+
+<div class="main-panel">
+    <navbar-cmp></navbar-cmp>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+
+    <footer id="myFooter">
+      <div class="container">
+          <div class="row">
+              <div class="col-sm-3">
+                  <h5>Inicio</h5>
+                  <ul>
+                      <li><a href="/">
+                        <fa-icon [icon]="home"></fa-icon> Home</a></li>
+
+                  </ul>
+              </div>
+              <div class="col-sm-3">
+                  <h5>Sobre nós</h5>
+                  <ul>
+                      <li><p>Mestrado Profissional em Tecnologia da Informação - <a href=" https://ifpb.edu.br/" target="_blank">IFPB</a>
+                      </p>
+                      <p>Afonso Serafim
+                        <br>
+                        Kym Kanatto
+                        <br>
+                        Matias Ribeiro
+                        <br>
+                        Ronei Oliveira
+                    </p>
+
+
+                      </li>
+
+                  </ul>
+              </div>
+              <div class="col-sm-3">
+
+                  <ul>
+
+                  </ul>
+              </div>
+              <div class="col-sm-3 info">
+                  <h5>Informações</h5>
+                  <p> Os dados apresentados refletem a contabilização efetuada pelas administrações,
+                      submetendo-se à análise de consistência e validação, e podem ser modificados quando
+                      auditados pelo TRIBUNAL DE CONTAS DO ESTADO DA PARAÍBA.
+
+                  <a  href=" https://tce.pb.gov.br/" target="_blank">TCE-PB</a>
+                </p>
+                </div>
+          </div>
+      </div>
+
+    </footer>
+
+</div>
+</div>
+

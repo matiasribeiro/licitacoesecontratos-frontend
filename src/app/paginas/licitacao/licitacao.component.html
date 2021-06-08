@@ -1,0 +1,407 @@
+
+<div class="row">
+  <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="card card-stats">
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-2 col-md-2">
+            <div class="icon-big text-center icon-warning">
+              <i class="nc-icon nc-chart-bar-32 text-warning"></i>
+            </div>
+          </div>
+          <div class="col-10 col-md-10">
+            <div class="numbers">
+              <p class="card-category">Governo da Paraíba</p>
+              <p class="card-title">{{quantidadeLicitacaoGOV}} und.
+                <p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer ">
+        <p></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="card card-stats">
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-1 col-md-2">
+            <div class="icon-big text-center icon-warning">
+              <i class="nc-icon nc-money-coins text-danger"></i>
+            </div>
+          </div>
+          <div class="col-11 col-md-10">
+            <div class="numbers">
+              <p class="card-category">Governo da Paraíba </p>
+              <p class="card-title"> R$ {{somaLicitacaoGOV}}
+                <p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer ">
+        <p></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="card card-stats">
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-2 col-md-2">
+            <div class="icon-big text-center icon-warning">
+              <i class="nc-icon nc-chart-bar-32 text-success"></i>
+            </div>
+          </div>
+          <div class="col-10 col-md-10">
+            <div class="numbers">
+              <p class="card-category">Prefeitura de João Pessoa</p>
+              <p class="card-title">{{quantidadeLicitacaoJP}} und.
+                <p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer ">
+        <p></p>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="card card-stats">
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-1 col-md-2">
+            <div class="icon-big text-center icon-warning">
+              <i class="nc-icon nc-money-coins text-primary"></i>
+            </div>
+          </div>
+          <div class="col-11 col-md-10">
+            <div class="numbers">
+              <p class="card-category">Prefeitura de João Pessoa</p>
+              <p class="card-title"> R$ {{somaLicitacaoJP}}
+                <p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer ">
+        <p></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-12">
+    <app-linha [dadoslineChart]="dadoslineChart" titulo="Gastos com Licitação em Relação ao Ano"></app-linha>
+  </div>
+
+</div>
+
+<div class="row">
+
+  <div class="col-md-6">
+    <app-pizza [pizzaOrgaoChartData]="pizzaOrgaoChartData" [pizzaOrgaoChartLabels]="pizzaOrgaoChartLabels" titulo="5 Orgãos Públicos com Mais Gastos (2017-2021)" ></app-pizza>
+  </div>
+  <div class="col-md-6">
+    <app-pizza [pizzaOrgaoChartData]="pizzaOrgaoCovidChartData" [pizzaOrgaoChartLabels]="pizzaOrgaoCovidChartLabels" titulo="Valor Total por Orgão com Dispensa pela COVID-19" ></app-pizza>
+  </div>
+
+
+</div>
+
+
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-body ">
+        <h4 class="display-5">Consulta de Licitação do Governo da Paraíba e João Pessoa-PB</h4>
+        <p class="lead">Sistema para visualizar de forma integrada as informações públicas de licitação e contratos referentes ao governo da Paraíba e ao município de João Pessoa - PB</p>
+
+      </div>
+      <div class="card-footer ">
+        <hr>
+        <div class="stats">
+          <i class="fa fa-history"></i> Atualização: Junho de 2021
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container">
+      <form [formGroup]="formulario">
+
+            <div class="row">
+              <div class="col-sm-12">
+
+                <input  id="inputBusca"
+                        class="form-control form-control-lg"
+                        formControlName="numeroBusca"
+                        type="text"
+
+                        placeholder="Número da Licitação"
+                        (keyup)="updateFilterNumero()"
+                />
+                </div>
+                <div class="col-sm-12">
+                  <app-mensagens  [control]="formGroup.numeroBusca" label="Número da Licitação"></app-mensagens>
+                </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-12">
+                <input  id="inputBusca"
+                        class="form-control form-control-lg"
+                        formControlName="assuntoBusca"
+                        type="text"
+
+                        placeholder="Assunto da Licitação"
+                        (keyup)="updateFilterObjetivo()"
+                />
+                </div>
+
+                <div class="col-sm-12">
+                  <app-mensagens  [control]="formGroup.assuntoBusca" label="Assunto da Licitação"></app-mensagens>
+                </div>
+             </div>
+
+
+        </form>
+    </div>
+
+
+
+
+  <div *ngIf="renderizacao_tela">
+
+  <ngx-datatable
+    #tabelaLicitacao
+    class="material"
+    [columnMode]="ColumnMode.flex"
+    [headerHeight]="50"
+    [footerHeight]="50"
+    rowHeight="auto"
+    [limit]="10"
+    [rows]="rows"
+    [selected]="selected"
+    [selectionType]="SelectionType.single"
+    [messages]="{emptyMessage: 'Nenhuma Licitação sobre o filtro de busca!'}"
+>
+
+ <!-- Row Detail Template -->
+ <ngx-datatable-row-detail rowHeight="auto" #myDetailRow >
+  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+    <div >
+
+          <div class="containerInfo">
+            <div class="row">
+
+              <div class="col-sm-3">
+                <span class="desktop-hidden">Objetivo: </span>
+              </div>
+              <div class="col-sm-9">
+                <span class="desktop-hidden">{{ row.objetivo}}</span>
+              </div>
+              <div class="linha desktop-hidden"></div>
+
+              <div class="col-sm-3">
+                <span class="desktop-hidden">Modalidade: </span>
+              </div>
+              <div class="col-sm-9">
+                <span class="desktop-hidden">{{ row.modalidade}} </span>
+              </div>
+              <div class="linha desktop-hidden"></div>
+
+              <div class="col-sm-3">
+                <span class="desktop-hidden">Valor Licitado: </span>
+              </div>
+              <div class="col-sm-9">
+                <span class="desktop-hidden">{{ formatarMoeda(row.valorLicitado)}} </span>
+              </div>
+              <div class="linha desktop-hidden"></div>
+
+              <div class="col-sm-3">
+                <span>Protocolo: </span>
+              </div>
+              <div class="col-sm-9">
+                <span>{{ row.protocolo}} </span>
+              </div>
+              <div class="linha"></div>
+
+              <div class="col-sm-3">
+                <span>Município: </span>
+              </div>
+              <div class="col-sm-9">
+                <span>{{ row.municipio}}</span>
+              </div>
+              <div class="linha"></div>
+
+              <div class="col-sm-3">
+                <span>CD Unidade Gestora: </span>
+              </div>
+              <div class="col-sm-9">
+                <span>{{ row.codigoUnidadeGestora}}</span>
+              </div>
+              <div class="linha"></div>
+
+              <div class="col-sm-3">
+                <span>ID Juridicional: </span>
+              </div>
+              <div class="col-sm-9">
+                <span>{{ row.idJuridicionado}}</span>
+              </div>
+              <div class="linha"></div>
+
+              <div class="col-sm-3">
+                <span>Nome Juridicional: </span>
+              </div>
+              <div class="col-sm-9">
+                <span>{{ row.nomeJuridicionado}}</span>
+              </div>
+              <div class="linha"></div>
+
+              <div class="col-sm-3">
+                <span>Valor Estimado: </span>
+              </div>
+              <div class="col-sm-9">
+                <span>{{ formatarMoeda(row.valorEstimado)}}</span>
+              </div>
+              <div class="linha"></div>
+
+              <div class="col-sm-3">
+                <span>Data Homologação: </span>
+              </div>
+              <div class="col-sm-9">
+                <span>{{ row.dataHomologacao}}</span>
+              </div>
+              <div class="linha"></div>
+
+              <div class="col-sm-3">
+                <span>Estágio Processual: </span>
+              </div>
+              <div class="col-sm-9">
+                <span>{{ row.nomeEstagioProcessual}}</span>
+              </div>
+              <div class="linha"></div>
+
+              <div class="col-sm-3">
+                <span>Setor Atual: </span>
+              </div>
+              <div class="col-sm-9">
+                <span>{{ row.nomeSetorAtual}}</span>
+              </div>
+              <div class="linha"></div>
+
+              <div class="col-sm-3">
+                <span>URL TCE: </span>
+              </div>
+              <div class="col-sm-9">
+                <span class="rowUrl">{{ row.url}}</span>
+              </div>
+              <div class="linha"></div>
+
+              <div class="col-sm-3">
+                <span >Entidade Governamental: </span>
+              </div>
+              <div class="col-sm-9">
+                <span >{{ row.entidadeGovernamental}}</span>
+              </div>
+              <div class="linha"></div>
+
+              <div class="col-sm-3">
+                <span>Número Processo: </span>
+              </div>
+              <div class="col-sm-9">
+                <span>{{ row.numeroProcesso}}</span>
+              </div>
+              <div class="linha"></div>
+
+
+
+            </div>
+
+
+          </div>
+
+
+    </div>
+  </ng-template>
+</ngx-datatable-row-detail>
+
+          <!-- Column Templates -->
+          <ngx-datatable-column
+          [width]="90"
+          [flexGrow]="1"
+          [resizeable]="false"
+          [sortable]="false"
+          [draggable]="false"
+          [canAutoResize]="false"
+        >
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            <a
+              href="javascript:void(0)"
+              [class.datatable-icon-right]="!expanded"
+              [class.datatable-icon-down]="expanded"
+              title="Expand/Collapse Row"
+              (click)="toggleExpandRow(row)"
+            >
+            </a>
+          </ng-template>
+        </ngx-datatable-column>
+
+
+      <ngx-datatable-column
+            prop="column.numero"
+            name="Número"
+            [sortable]="true"
+      >
+        <ng-template let-value="row.numero" ngx-datatable-cell-template>
+          {{ value  }}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Objetivo" [flexGrow]="1">
+        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+          <span class="mobile-hidden">{{ column.name }}</span>
+        </ng-template>
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          <span class="mobile-hidden">{{ value }}</span>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Modalidade" [flexGrow]="1">
+        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+          <span class="mobile-hidden">{{ column.name }}</span>
+        </ng-template>
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          <span class="mobile-hidden">{{ value }}</span>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Valor Licitado" [flexGrow]="1">
+        <ng-template style="text-align:left" let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+          <span class="mobile-hidden">{{ column.name }}</span>
+        </ng-template>
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          <span class="mobile-hidden">{{ formatarMoeda(value) }}</span>
+        </ng-template>
+      </ngx-datatable-column>
+
+
+
+</ngx-datatable>
+
+</div>

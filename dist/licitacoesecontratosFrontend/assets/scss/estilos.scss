@@ -1,0 +1,91 @@
+
+/*
+Custom Theming for Angular Material
+For more information: https://material.angular.io/guide/theming */
+@import '~@angular/material/theming';
+
+
+/*
+Plus imports for other components in your app.
+
+Include the common styles for Angular Material. We include this here so that you only
+have to load a single css file for Angular Material in your app.
+Be sure that you only ever include this mixin once! */
+@include mat-core();
+
+/*
+Define the palettes for your theme using the Material Design palettes available in palette.scss
+(imported above). For each palette, you can optionally specify a default, lighter, and darker
+hue. Available color palettes: https://material.io/design/color/ */
+$licitacoesecontratosFrontend-primary: mat-palette($mat-indigo);
+$licitacoesecontratosFrontend-accent: mat-palette($mat-pink, A200, A100, A400);
+
+/* The warn palette is optional (defaults to red). */
+$licitacoesecontratosFrontend-warn: mat-palette($mat-red);
+
+/*
+Create the theme object. A theme consists of configurations for individual
+theming systems such as "color" or "typography". */
+$licitacoesecontratosFrontend-theme: mat-light-theme((
+  color: (
+    primary: $licitacoesecontratosFrontend-primary,
+    accent: $licitacoesecontratosFrontend-accent,
+    warn: $licitacoesecontratosFrontend-warn,
+  )
+));
+
+/*
+Include theme styles for core and each component used in your app.
+Alternatively, you can import and @include the theme mixins for each component
+that you are using. */
+@include angular-material-theme($licitacoesecontratosFrontend-theme);
+
+/* NGX-DATATABLE */
+@import '~@swimlane/ngx-datatable/index.css';
+@import '~@swimlane/ngx-datatable/themes/dark.css';
+@import '~@swimlane/ngx-datatable/themes/material.scss';
+@import '~@swimlane/ngx-datatable/assets/icons.css';
+
+
+
+@import 'estilos/variables';
+@import 'estilos/mixins';
+
+
+@import "estilos/plugins/plugin-animate-bootstrap-notify";
+@import "estilos/plugins/plugin-perfect-scrollbar";
+
+
+@import "estilos/buttons";
+
+@import "estilos/typography";
+@import "estilos/misc";
+@import "estilos/checkboxes-radio";
+
+
+@import "estilos/navbar";
+@import "estilos/page-header";
+@import "estilos/dropdown";
+@import "estilos/images";
+@import "estilos/nucleo-outline";
+@import "estilos/tables";
+@import "estilos/sidebar-and-main-panel";
+@import "estilos/footers";
+@import "estilos/fixed-plugin";
+
+
+@import "estilos/angular/sidebar-and-main-panel";
+@import "estilos/angular/plugin-ngx-toastr";
+@import "estilos/angular/dropdown";
+@import "estilos/angular/fixed-plugin";
+
+
+@import "estilos/responsive";
+
+@import "estilos/cards";
+@import "estilos/cards/card-plain";
+@import "estilos/cards/card-chart";
+@import "estilos/cards/card-user";
+@import "estilos/cards/card-map";
+@import "estilos/cards/card-stats";
+

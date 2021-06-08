@@ -1,0 +1,120 @@
+
+.main-panel {
+    background-color: #e9ecf5 !important;
+}
+
+
+.backgroundMenu {
+  background-color: rgb(179, 189, 214) !important;
+  margin: 0;
+  padding: 0;
+}
+
+.display-4 {
+  font-size: 2em  !important;
+}
+
+/* ------------------------------ LOGO -------------------------------*/
+
+@media screen and (max-width: 750px) {
+  .logo{
+    height: 7em;
+  }
+  ul.navbar-nav {
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .logo{
+    height: 7em;
+  }
+  ul.navbar-nav {
+    font-size: 20px;
+  }
+}
+
+
+/* ------------------------------ RODAPÈ -------------------------------*/
+#myFooter {
+  background-color: #272a2d;
+  color: white;
+}
+
+
+#myFooter .info{
+  text-align: justify;
+}
+
+#myFooter ul {
+  list-style-type: none;
+  padding-left: 0;
+  line-height: 1.7;
+}
+
+#myFooter h5 {
+  font-size: 18px;
+  color: white;
+  font-weight: bold;
+  margin-top: 30px;
+}
+
+#myFooter .logo{
+  margin-top: 10px;
+}
+
+#myFooter .second-bar .logo a{
+  color:white;
+  font-size: 28px;
+  float: left;
+  font-weight: bold;
+  line-height: 68px;
+  margin: 0;
+  padding: 0;
+}
+
+#myFooter a {
+  color: #d2d1d1;
+  text-decoration: none;
+}
+
+#myFooter a:hover,
+#myFooter a:focus {
+  text-decoration: none;
+  color: white;
+}
+
+#myFooter .second-bar {
+  text-align: center;
+  background-color: #33373e;
+  text-align: center;
+}
+
+#myFooter .second-bar a {
+  font-size: 22px;
+  color: #9fa3a9;
+  padding: 10px;
+  transition: 0.2s;
+  line-height: 68px;
+}
+
+#myFooter .second-bar a:hover {
+  text-decoration: none;
+}
+
+#myFooter .social-icons {
+  float:right;
+}
+
+
+@media screen and (max-width: 767px) {
+  #myFooter {
+      text-align: center;
+  }
+
+  #myFooter .info{
+      text-align: center;
+  }
+}
+
+

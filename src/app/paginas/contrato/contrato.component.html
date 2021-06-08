@@ -1,0 +1,275 @@
+
+
+<div class="row">
+  <div class="col-md-12">
+    <app-barra [dadosChartBar]="dadosChartBar"></app-barra>
+
+</div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-body ">
+        <h4 class="display-5">Consulta de Contratos do Governo da Paraíba e João Pessoa-PB</h4>
+      </div>
+      <div class="card-footer ">
+        <hr>
+        <div class="stats">
+          <i class="fa fa-history"></i> Atualização: Junho de 2021
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+  <div class="container">
+      <form [formGroup]="formulario">
+
+          <div class="row">
+            <div class="col-sm-12">
+
+              <input  id="inputBusca"
+                      class="form-control form-control-lg"
+                      formControlName="numeroBusca"
+                      type="text"
+                      placeholder="Busca pelo número do contrato"
+                      (keyup)="updateFilterNumero()"
+              />
+              </div>
+
+              <div class="col-sm-12">
+                <app-mensagens  [control]="formGroup.numeroBusca" label="Número do Contrato"></app-mensagens>
+              </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <input  id="inputBusca"
+                      class="form-control form-control-lg"
+                      formControlName="assuntoBusca"
+                      type="text"
+                      placeholder="Busca pelo objeto do contrato"
+                      (keyup)="updateFilterObjeto()"
+              />
+              </div>
+
+              <div class="col-sm-12">
+                <app-mensagens  [control]="formGroup.assuntoBusca" label="Objeto do Contrato"></app-mensagens>
+              </div>
+           </div>
+
+        </form>
+  </div>
+
+
+
+  <div *ngIf="renderizacao_tela">
+
+    <ngx-datatable
+      #tabelaLicitacao
+      class="material"
+      [columnMode]="ColumnMode.flex"
+      [headerHeight]="50"
+      [footerHeight]="50"
+      rowHeight="auto"
+      [limit]="10"
+      [rows]="rows"
+      [selected]="selected"
+      [selectionType]="SelectionType.single"
+      [messages]="{emptyMessage: 'Nenhum contrato sobre o filtro de busca!'}"
+  >
+
+   <!-- Row Detail Template -->
+   <ngx-datatable-row-detail rowHeight="auto" #myDetailRow >
+    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+      <div >
+
+            <div class="containerInfo">
+              <div class="row">
+
+                <div class="col-sm-3">
+                  <span class="desktop-hidden">CPF/CNPJ Proponente: </span>
+                </div>
+                <div class="col-sm-9">
+                  <span class="desktop-hidden">{{ row.cpfCnpjProponente}}</span>
+                </div>
+                <div class="linha desktop-hidden"></div>
+
+                <div class="col-sm-3">
+                  <span class="desktop-hidden">Número: </span>
+                </div>
+                <div class="col-sm-9">
+                  <span class="desktop-hidden">{{ row.numeroContrato}} </span>
+                </div>
+                <div class="linha desktop-hidden"></div>
+
+                <div class="col-sm-3">
+                  <span class="desktop-hidden">Objeto: </span>
+                </div>
+                <div class="col-sm-9">
+                  <span class="desktop-hidden">{{ row.objeto}} </span>
+                </div>
+                <div class="linha desktop-hidden"></div>
+
+                <div class="col-sm-3">
+                  <span class="desktop-hidden">Valor Proposta: </span>
+                </div>
+                <div class="col-sm-9">
+                  <span class="desktop-hidden">{{ formatarMoeda(row.valorProposta)}} </span>
+                </div>
+                <div class="linha desktop-hidden"></div>
+
+                <div class="col-sm-3">
+                  <span>Número do Processo Licitado: </span>
+                </div>
+                <div class="col-sm-9">
+                  <span>{{ row.numeroProcessoLicitacao}} </span>
+                </div>
+                <div class="linha"></div>
+
+                <div class="col-sm-3">
+                  <span class="desktop-hidden">Número da Licitação: </span>
+                </div>
+                <div class="col-sm-9">
+                  <span class="desktop-hidden">{{ row.numeroLicitacao}} </span>
+                </div>
+                <div class="linha desktop-hidden"></div>
+
+                <div class="col-sm-3">
+                  <span>Data Início: </span>
+                </div>
+                <div class="col-sm-9">
+                  <span>{{ row.dataInicio}}</span>
+                </div>
+                <div class="linha"></div>
+
+                <div class="col-sm-3">
+                  <span>Data Final: </span>
+                </div>
+                <div class="col-sm-9">
+                  <span>{{ row.dataFinal}}</span>
+                </div>
+                <div class="linha"></div>
+
+                <div class="col-sm-3">
+                  <span>Contratante: </span>
+                </div>
+                <div class="col-sm-9">
+                  <span>{{ row.contratante}}</span>
+                </div>
+                <div class="linha"></div>
+
+                <div class="col-sm-3">
+                  <span>Fornecedor: </span>
+                </div>
+                <div class="col-sm-9">
+                  <span>{{ row.fornecedor}}</span>
+                </div>
+                <div class="linha"></div>
+
+                <div class="col-sm-3">
+                  <span class="desktop-hidden">Entidade Governamental: </span>
+                </div>
+                <div class="col-sm-9">
+                  <span class="desktop-hidden">{{ row.entidadeGovernamental}} </span>
+                </div>
+                <div class="linha desktop-hidden"></div>
+
+
+
+              </div>
+
+
+            </div>
+
+
+      </div>
+    </ng-template>
+  </ngx-datatable-row-detail>
+
+            <!-- Column Templates -->
+            <ngx-datatable-column
+            [width]="90"
+            [flexGrow]="4"
+            [resizeable]="false"
+            [sortable]="false"
+            [draggable]="false"
+            [canAutoResize]="false"
+          >
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              <a
+                href="javascript:void(0)"
+                [class.datatable-icon-right]="!expanded"
+                [class.datatable-icon-down]="expanded"
+                title="Expand/Collapse Row"
+                (click)="toggleExpandRow(row)"
+              >
+              </a>
+            </ng-template>
+          </ngx-datatable-column>
+
+        <ngx-datatable-column
+              name="CPF/CNPJ Proponente"
+              [sortable]="true"
+              [flexGrow]="1"
+              [minWidth]="200"
+        >
+          <ng-template let-value="row.cpfCnpjProponente" ngx-datatable-cell-template>
+            {{ value  }}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Número"  [flexGrow]="1">
+          <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+            <span class="mobile-hidden">{{ column.name }}</span>
+          </ng-template>
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <span class="mobile-hidden">{{ row.numeroContrato }}</span>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Objeto" [flexGrow]="1">
+          <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+            <span class="mobile-hidden">{{ column.name }}</span>
+          </ng-template>
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <span class="mobile-hidden">{{ value }}</span>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Valor da Proposta" [flexGrow]="1">
+          <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+            <span class="mobile-hidden">{{ column.name }}</span>
+          </ng-template>
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <span class="mobile-hidden">{{ formatarMoeda(value) }}</span>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Número da Licitação" [flexGrow]="1">
+          <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+            <span class="mobile-hidden">{{ column.name }}</span>
+          </ng-template>
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <span class="mobile-hidden">{{ row.numeroLicitacao }}</span>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Entidade Governamental" [flexGrow]="1">
+          <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+            <span class="mobile-hidden">{{ column.name }}</span>
+          </ng-template>
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <span class="mobile-hidden">{{ row.entidadeGovernamental }}</span>
+          </ng-template>
+        </ngx-datatable-column>
+
+
+
+
+  </ngx-datatable>
+
+  </div>
