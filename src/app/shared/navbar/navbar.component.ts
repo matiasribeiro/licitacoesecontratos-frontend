@@ -43,7 +43,7 @@ export class NavbarComponent implements OnInit{
               return this.listTitles[item].title;
           }
       }
-      return 'licitacao';
+      return 'Licitações';
     }
     sidebarToggle() {
         if (this.sidebarVisible === false) {

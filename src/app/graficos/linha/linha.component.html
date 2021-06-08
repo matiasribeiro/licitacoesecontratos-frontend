@@ -1,0 +1,43 @@
+
+<div class="card ">
+  <div class="card-header ">
+    <h5 class="card-title">{{ titulo }}</h5>
+  </div>
+  <div class="card-body ">
+    <div class="chart-wrapper">
+
+      <div class="flex">
+        <div class="flex-item">
+          <div style="display: block;">
+          <canvas baseChart
+                      width="300"
+                      [height]="alturaChart"
+                      [datasets]="dadoslineChart"
+                      [labels]="lineChartLabels"
+                      [options]="lineChartOptions"
+                      [colors]="lineChartColors"
+                      [legend]="lineChartLegend"
+                      [chartType]="lineChartType"
+
+                      (chartHover)="chartHovered($event)"
+                      (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-3 offset-md-5">
+              <button  class="btn btn-primary btn-round" color="primary" (click)="changeColor()">Alterar Cores do Gráfico</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  </div>
+  </div>
+  <div class="card-footer ">
+    <hr>
+    <div class="stats">
+      <i class="fa fa-history"></i>
+    </div>
+  </div>
+</div>

@@ -26,6 +26,13 @@ export class ContratoComponent implements OnInit {
   ColumnMode = ColumnMode;
   renderizacao_tela = false;
 
+  _entidade_gov_pb = 1;
+  _entidade_jp = 2;
+
+  dadosChartBar: any[] = [];
+  dadosbarrajp: any = [];
+  dadosbarragov: any = [];
+
   constructor(
     private servicos : ServicosService,
     private formBuilder: FormBuilder,
@@ -38,6 +45,7 @@ export class ContratoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
 
     this.dialog.open(DialogComponent,  {panelClass: 'myapp-no-padding-dialog'});
 
@@ -65,6 +73,33 @@ export class ContratoComponent implements OnInit {
       ] ],
 
     })
+
+    this.dadosChartBar = []
+    this.dadosbarrajp = []
+    this.servicos.getAnosVsValoresContratos(this._entidade_jp)
+    .subscribe(dados => {
+
+      const mapDados = dados.map((v, index, array) => {
+        return v.valorTotal;
+      })
+
+      this.dadosbarrajp = {data: mapDados, label:'Prefeitura Municipal de João Pessoa'};
+
+    })
+
+    this.servicos.getAnosVsValoresContratos(this._entidade_gov_pb)
+    .subscribe(dados => {
+
+      const mapDados = dados.map((v, index, array) => {
+        return v.valorTotal;
+      })
+
+      this.dadosChartBar = [ {data: mapDados, label:'Governo da Paraíba'}, this.dadosbarrajp ];
+
+    })
+
+
+
 
   }
 

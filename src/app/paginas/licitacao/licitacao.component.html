@@ -1,5 +1,128 @@
 
 <div class="row">
+  <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="card card-stats">
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-2 col-md-2">
+            <div class="icon-big text-center icon-warning">
+              <i class="nc-icon nc-chart-bar-32 text-warning"></i>
+            </div>
+          </div>
+          <div class="col-10 col-md-10">
+            <div class="numbers">
+              <p class="card-category">Governo da Paraíba</p>
+              <p class="card-title">{{quantidadeLicitacaoGOV}} und.
+                <p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer ">
+        <p></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="card card-stats">
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-1 col-md-2">
+            <div class="icon-big text-center icon-warning">
+              <i class="nc-icon nc-money-coins text-danger"></i>
+            </div>
+          </div>
+          <div class="col-11 col-md-10">
+            <div class="numbers">
+              <p class="card-category">Governo da Paraíba </p>
+              <p class="card-title"> R$ {{somaLicitacaoGOV}}
+                <p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer ">
+        <p></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="card card-stats">
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-2 col-md-2">
+            <div class="icon-big text-center icon-warning">
+              <i class="nc-icon nc-chart-bar-32 text-success"></i>
+            </div>
+          </div>
+          <div class="col-10 col-md-10">
+            <div class="numbers">
+              <p class="card-category">Prefeitura de João Pessoa</p>
+              <p class="card-title">{{quantidadeLicitacaoJP}} und.
+                <p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer ">
+        <p></p>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="card card-stats">
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-1 col-md-2">
+            <div class="icon-big text-center icon-warning">
+              <i class="nc-icon nc-money-coins text-primary"></i>
+            </div>
+          </div>
+          <div class="col-11 col-md-10">
+            <div class="numbers">
+              <p class="card-category">Prefeitura de João Pessoa</p>
+              <p class="card-title"> R$ {{somaLicitacaoJP}}
+                <p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer ">
+        <p></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-12">
+    <app-linha [dadoslineChart]="dadoslineChart" titulo="Gastos com Licitação em Relação ao Ano"></app-linha>
+  </div>
+
+</div>
+
+<div class="row">
+
+  <div class="col-md-6">
+    <app-pizza [pizzaOrgaoChartData]="pizzaOrgaoChartData" [pizzaOrgaoChartLabels]="pizzaOrgaoChartLabels" titulo="5 Orgãos Públicos com Mais Gastos (2017-2021)" ></app-pizza>
+  </div>
+  <div class="col-md-6">
+    <app-pizza [pizzaOrgaoChartData]="pizzaOrgaoCovidChartData" [pizzaOrgaoChartLabels]="pizzaOrgaoCovidChartLabels" titulo="Valor Total por Orgão com Dispensa pela COVID-19" ></app-pizza>
+  </div>
+
+
+</div>
+
+
+
+
+<div class="row">
   <div class="col-md-12">
     <div class="card ">
       <div class="card-body ">
@@ -10,7 +133,7 @@
       <div class="card-footer ">
         <hr>
         <div class="stats">
-          <i class="fa fa-history"></i> Atualização: Março de 2021
+          <i class="fa fa-history"></i> Atualização: Junho de 2021
         </div>
       </div>
     </div>
@@ -269,7 +392,7 @@
       </ngx-datatable-column>
 
       <ngx-datatable-column name="Valor Licitado" [flexGrow]="1">
-        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+        <ng-template style="text-align:left" let-column="column" let-sort="sortFn" ngx-datatable-header-template>
           <span class="mobile-hidden">{{ column.name }}</span>
         </ng-template>
         <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>

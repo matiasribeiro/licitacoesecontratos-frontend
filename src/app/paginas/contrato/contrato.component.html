@@ -1,4 +1,12 @@
 
+
+<div class="row">
+  <div class="col-md-12">
+    <app-barra [dadosChartBar]="dadosChartBar"></app-barra>
+
+</div>
+</div>
+
 <div class="row">
   <div class="col-md-12">
     <div class="card ">
@@ -8,7 +16,7 @@
       <div class="card-footer ">
         <hr>
         <div class="stats">
-          <i class="fa fa-history"></i> Atualização: Março de 2021
+          <i class="fa fa-history"></i> Atualização: Junho de 2021
         </div>
       </div>
     </div>
@@ -207,7 +215,7 @@
               name="CPF/CNPJ Proponente"
               [sortable]="true"
               [flexGrow]="1"
-              [minWidth]="480"
+              [minWidth]="200"
         >
           <ng-template let-value="row.cpfCnpjProponente" ngx-datatable-cell-template>
             {{ value  }}

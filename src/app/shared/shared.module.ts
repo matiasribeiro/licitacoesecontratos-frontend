@@ -1,3 +1,5 @@
+import { GraficosModule } from './../graficos/graficos.module';
+
 import { MensagensComponent } from '../mensagens/mensagens.component';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -9,7 +11,10 @@ import { RouterModule } from '@angular/router';
 
 
 @NgModule({
-  declarations: [ MensagensComponent ],
+  declarations: [
+    MensagensComponent
+
+    ],
   imports: [
     CommonModule,
     NgbModule,

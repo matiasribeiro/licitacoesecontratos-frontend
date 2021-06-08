@@ -1,15 +1,14 @@
-import { Licitacoes } from './../../modelos/licitacao';
-import { DialogComponent } from './../dialog/dialog.component';
 import { element } from 'protractor';
+import { DialogComponent } from './../dialog/dialog.component';
 import { Contratos } from './../../modelos/contratos';
 import { ServicosService } from './../../servicos.service';
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ColumnMode, DatatableComponent, SelectionType } from '@swimlane/ngx-datatable';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpEventType } from '@angular/common/http';
 import {MatDialog} from '@angular/material/dialog';
-import { from, Observable } from 'rxjs';
-import { publishReplay, refCount } from 'rxjs/operators';
+import { Chart, ChartDataSets } from 'chart.js';
+import { Observable } from 'rxjs';
+import { Color, Label } from 'ng2-charts';
 
 @Component({
   selector: 'app-licitacao',
@@ -29,6 +28,12 @@ export class LicitacaoComponent implements OnInit {
 
   licitacoes$: Observable<any>;
 
+  public canvas : any;
+  public ctx;
+  public chartColor;
+  public chartEmail;
+  public chartHours;
+
   rows = [];
   temp = [];
   selected = [];
@@ -37,6 +42,31 @@ export class LicitacaoComponent implements OnInit {
   formulario: FormGroup;
 
   contratos: Contratos;
+
+  quantidadeLicitacaoGOV = '';
+  quantidadeLicitacaoJP = '';
+
+  somaLicitacaoGOV = '';
+  somaLicitacaoJP = '';
+
+  _governo_paraiba = 'Governo da Paraíba';
+  _prefeitura_joao_pessoa = 'Prefeitura Municipal de João Pessoa';
+
+  pizzaOrgaoChartLabels: Label[] = [];
+  pizzaOrgaoChartData: any[] = [];
+
+  pizzaOrgaoCovidChartLabels: Label[] = [];
+  pizzaOrgaoCovidChartData: any[] = [];
+
+
+  _entidade_gov_pb = 1;
+  _entidade_jp = 2;
+
+  dadosChartRadarGoverno: any = [];
+  dadosjp: any = [];
+
+  dadoslineChart: any = [];
+  dadoslinhajp: any = [];
 
   constructor(
     private servicos : ServicosService,
@@ -49,10 +79,12 @@ export class LicitacaoComponent implements OnInit {
     ];
   }
 
+  dadosbarraChart: any = [];
 
 
+  ngOnInit() {
 
-  ngOnInit(): void {
+
 
     this.dialog.open(DialogComponent,  {panelClass: 'myapp-no-padding-dialog'});
 
@@ -69,6 +101,7 @@ export class LicitacaoComponent implements OnInit {
       });
 
 
+
     this.formulario = this.formBuilder.group({
 
       numeroBusca: ['', [
@@ -79,8 +112,125 @@ export class LicitacaoComponent implements OnInit {
       ] ],
 
     })
-  }
 
+  // -------------------------------- Gráfico quantidade licitação ---------------------------------
+  this.servicos.getlistarLicitacoesTotal()
+  .subscribe(dados => {
+
+    var quant_gov = 0;
+    var quant_jp = 0;
+    dados.forEach(element => {
+      if(element.entidadeGovernamental === this._governo_paraiba){
+        quant_gov = element.totalLicitacoes;
+      }
+      if(element.entidadeGovernamental === this._prefeitura_joao_pessoa){
+        quant_jp = element.totalLicitacoes;
+      }
+    });
+    this.quantidadeLicitacaoGOV = quant_gov.toLocaleString('pt-BR', { maximumFractionDigits: 0 });
+    this.quantidadeLicitacaoJP = quant_jp.toLocaleString('pt-BR', { maximumFractionDigits: 0 });
+  });
+
+  // -------------------------------- Gráfico valor licitação ---------------------------------
+  this.servicos.getlistarLicitacoesSoma()
+  .subscribe(dados => {
+
+    var valores_gov = 0;
+    var valores_jp = 0;
+    dados.forEach(element => {
+      if(element.entidadeGovernamental === this._governo_paraiba){
+        valores_gov = element.valorTotal;
+      }
+      if(element.entidadeGovernamental === this._prefeitura_joao_pessoa){
+        valores_jp = element.valorTotal;
+      }
+    });
+    this.somaLicitacaoGOV = valores_gov.toLocaleString('de-DE', { maximumFractionDigits: 2 });
+    this.somaLicitacaoJP = valores_jp.toLocaleString('de-DE', {  maximumFractionDigits: 2 });
+  });
+
+
+
+  // -------------------------------- Gráfico Linha ---------------------------------
+    this.dadoslineChart = [];
+    this.dadoslinhajp = [];
+    this.servicos.getAnosVsValores(this._entidade_jp)
+    .subscribe(dados => {
+
+      const mapValor = dados.map((v, index, array) => {
+        return v.valorTotal;
+      })
+
+      const mapAno = dados.map((v, index, array) => {
+        return v.anoHomologacao;
+      })
+
+      this.dadoslinhajp = {data: mapValor, label: 'Prefeitura Municipal de João Pessoa'};
+
+    })
+
+    this.servicos.getAnosVsValores(this._entidade_gov_pb)
+    .subscribe(dados => {
+
+      const mapValor = dados.map((v, index, array) => {
+        return v.valorTotal;
+      })
+
+      const mapAno = dados.map((v, index, array) => {
+        return v.anoHomologacao;
+      })
+
+      this.dadoslineChart = [ {data: mapValor, label: 'Governo do Estado da Paraíba'}, this.dadoslinhajp ];
+
+
+
+    })
+
+    // -------------------------------- Gráfico Radar ---------------------------------
+    this.servicos.getAnosVsValores(this._entidade_jp)
+    .subscribe(dados => {
+
+      const mapDados = dados.map((v, index, array) => {
+        return v.valorTotal;
+      })
+
+      this.dadosjp = {data: mapDados, label:'JP'};
+
+    })
+
+    this.servicos.getAnosVsValores(this._entidade_gov_pb)
+    .subscribe(dados => {
+
+      const mapDados = dados.map((v, index, array) => {
+        return v.valorTotal;
+      })
+
+      this.dadosChartRadarGoverno = [ {data: mapDados, label:'Gov'}, this.dadosjp ];
+
+    })
+
+
+    // -------------------------------- Gráfico de Pizza ---------------------------------
+    this.servicos.getOrgaoVsValor()
+    .subscribe(dados => {
+
+      for (let index = 0; index < 5; index++) {
+        this.pizzaOrgaoChartLabels.push(dados[index].nomeJuridicionado);
+        this.pizzaOrgaoChartData.push(dados[index].valorTotal);
+      }
+    })
+
+    this.servicos.getOrgaoVsValorCovid()
+    .subscribe(dados => {
+
+      for (let index = 0; index < dados.length; index++) {
+        this.pizzaOrgaoCovidChartLabels.push(dados[index].nomeJuridicionado);
+        this.pizzaOrgaoCovidChartData.push(dados[index].valorTotal);
+      }
+    })
+
+
+  }
 
 
   updateFilterNumero() {

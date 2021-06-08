@@ -1,3 +1,5 @@
+import { GraficosModule } from './graficos/graficos.module';
+import { ChartsModule } from 'ng2-charts';
 import { SidebarModule } from './sidebar/sidebar.module';
 
 import { PaginasModule } from './paginas/paginas.module';
@@ -20,6 +22,7 @@ import { NavbarModule } from './shared/navbar/navbar.module';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent
@@ -38,7 +41,9 @@ import { NavbarModule } from './shared/navbar/navbar.module';
     SharedModule,
     NgbModule,
     SidebarModule,
-    NavbarModule
+    NavbarModule,
+    ChartsModule,
+    GraficosModule
   ],
   providers: [
   ],
