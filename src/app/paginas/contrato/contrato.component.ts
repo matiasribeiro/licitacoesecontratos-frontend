@@ -82,17 +82,17 @@ export class ContratoComponent implements OnInit {
     this.dialog.open(DialogComponent,  {panelClass: 'myapp-no-padding-dialog'});
 
 
-    // this.servicos.getContratos()
-    // .subscribe(dados => {
+    this.servicos.getContratos()
+    .subscribe(dados => {
 
-    //    // cache our list
-    //    this.tempDados = [...dados];
+       // cache our list
+       this.tempDados = [...dados];
 
-    //    // push our inital complete list
-    //    this.rows = dados;
-    //    this.renderizacao_tela = true;
-    //    this.dialog.closeAll();
-    // });
+       // push our inital complete list
+       this.rows = dados;
+       this.renderizacao_tela = true;
+
+    });
 
     this.dialog.closeAll();
 
