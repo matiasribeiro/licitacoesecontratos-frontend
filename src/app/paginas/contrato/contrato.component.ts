@@ -18,6 +18,10 @@ export class ContratoComponent implements OnInit {
 
   formulario: FormGroup;
 
+  formFornecedor: FormGroup;
+  documento = '';
+  renderizacao_fornecedor = false;
+
   rows = [];
   tempDados = [];
   selected = [];
@@ -33,6 +37,10 @@ export class ContratoComponent implements OnInit {
   dadosbarrajp: any = [];
   dadosbarragov: any = [];
 
+  // fornecedor
+  rowsFornecedor = [];
+  tempDadosFornecedor = [];
+
   constructor(
     private servicos : ServicosService,
     private formBuilder: FormBuilder,
@@ -44,24 +52,49 @@ export class ContratoComponent implements OnInit {
     ];
   }
 
+
+  getFornecedor(){
+
+
+    let doc = this.formFornecedor.controls.numdocumento.value.trim()
+    this.servicos.getFornecedor(doc)
+    .subscribe(dados => {
+
+
+      // cache our list
+      this.tempDadosFornecedor = [...dados];
+
+      // push our inital complete list
+      this.rowsFornecedor = dados;
+
+    });
+
+    this.renderizacao_fornecedor = true;
+
+  }
+
+
+
+
   ngOnInit(): void {
 
 
     this.dialog.open(DialogComponent,  {panelClass: 'myapp-no-padding-dialog'});
 
 
-    this.servicos.getContratos()
-    .subscribe(dados => {
+    // this.servicos.getContratos()
+    // .subscribe(dados => {
 
-       // cache our list
-       this.tempDados = [...dados];
+    //    // cache our list
+    //    this.tempDados = [...dados];
 
-       // push our inital complete list
-       this.rows = dados;
-       this.renderizacao_tela = true;
-       this.dialog.closeAll();
-    });
+    //    // push our inital complete list
+    //    this.rows = dados;
+    //    this.renderizacao_tela = true;
+    //    this.dialog.closeAll();
+    // });
 
+    this.dialog.closeAll();
 
     this.formulario = this.formBuilder.group({
 
@@ -74,30 +107,34 @@ export class ContratoComponent implements OnInit {
 
     })
 
+    this.formFornecedor = this.formBuilder.group({
+
+      numdocumento: ['', [
+                            Validators.maxLength(15)
+      ] ],
+
+    })
+
+
     this.dadosChartBar = []
-    this.dadosbarrajp = []
-    this.servicos.getAnosVsValoresContratos(this._entidade_jp)
+    this.servicos.getAnosValoresEntidadeGovernamentalContratos()
     .subscribe(dados => {
 
-      const mapDados = dados.map((v, index, array) => {
-        return v.valorTotal;
-      })
+      const mapContratosGovValor = [];
+      const mapContratosJPValor = [];
+      dados.forEach(element => {
 
-      this.dadosbarrajp = {data: mapDados, label:'Prefeitura Municipal de João Pessoa'};
+        if(element.entidadeGovernamental === 'Governo da Paraíba'){
+          mapContratosGovValor.push(element.valorTotal)
+        }
+        else if(element.entidadeGovernamental === 'Prefeitura Municipal de João Pessoa'){
+          mapContratosJPValor.push(element.valorTotal)
+        }
 
+      });
+
+      this.dadosChartBar = [ {data: mapContratosGovValor, label: 'Governo do Estado da Paraíba'}, {data: mapContratosJPValor, label: 'Prefeitura Municipal de João Pessoa' } ];
     })
-
-    this.servicos.getAnosVsValoresContratos(this._entidade_gov_pb)
-    .subscribe(dados => {
-
-      const mapDados = dados.map((v, index, array) => {
-        return v.valorTotal;
-      })
-
-      this.dadosChartBar = [ {data: mapDados, label:'Governo da Paraíba'}, this.dadosbarrajp ];
-
-    })
-
 
 
 
@@ -178,6 +215,7 @@ export class ContratoComponent implements OnInit {
   get formGroup(){
     return this.formulario.controls;
   }
+
 
 
 

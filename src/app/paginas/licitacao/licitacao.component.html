@@ -198,8 +198,12 @@
     [rows]="rows"
     [selected]="selected"
     [selectionType]="SelectionType.single"
+    [summaryHeight]="55"
+    [summaryRow]="true"
     [messages]="{emptyMessage: 'Nenhuma Licitação sobre o filtro de busca!'}"
 >
+
+
 
  <!-- Row Detail Template -->
  <ngx-datatable-row-detail rowHeight="auto" #myDetailRow >
@@ -403,5 +407,13 @@
 
 
 </ngx-datatable>
+
+<ng-template #nameSummaryCell >
+  <div class="name-container">
+
+     teste
+
+  </div>
+</ng-template>
 
 </div>

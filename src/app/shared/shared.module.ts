@@ -1,4 +1,3 @@
-import { GraficosModule } from './../graficos/graficos.module';
 
 import { MensagensComponent } from '../mensagens/mensagens.component';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
@@ -8,6 +7,7 @@ import { NgxDatatableModule } from "@swimlane/ngx-datatable";
 import { AppRoutingModule } from '../app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
+
 
 
 @NgModule({

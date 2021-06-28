@@ -11,6 +11,191 @@
   <div class="col-md-12">
     <div class="card ">
       <div class="card-body ">
+        <h4 class="display-5">Consulta de Fornecedor</h4>
+      </div>
+      <div class="card-footer ">
+        <hr>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <form [formGroup]="formFornecedor" >
+
+      <div class="row">
+        <div class="col-sm-10">
+
+          <input  id="docBusca"
+                  class="form-control form-control-lg"
+                  formControlName="numdocumento"
+                  type="text"
+                  placeholder="Informe o documento do fornecedor"
+          />
+
+          </div>
+          <div class="col-sm-2">
+            <button  class="btn btn-primary btn-round" color="primary" (click)="getFornecedor()" >Pesquisar</button>
+          </div>
+
+      </div>
+    </form>
+</div>
+
+<div *ngIf="renderizacao_fornecedor">
+
+  <ngx-datatable
+    #tabelaFornecedor
+    class="material"
+    [columnMode]="ColumnMode.flex"
+    [headerHeight]="50"
+    [footerHeight]="50"
+    rowHeight="auto"
+    [limit]="10"
+    [rows]="rowsFornecedor"
+    [messages]="{emptyMessage: 'Nenhum fornecedor encontrado sobre o filtro de busca!'}"
+>
+
+
+     <!-- Row Detail Template -->
+   <ngx-datatable-row-detail rowHeight="auto" #myDetailRowFornecedor >
+    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+      <div >
+
+            <div class="containerInfo">
+              <div class="row">
+
+                <div class="col-sm-3">
+                  <span >Entidade Governamental: </span>
+                </div>
+                <div class="col-sm-9">
+                  <span >{{ row.entidadeGovernamental}}</span>
+                </div>
+                <div class="linha"></div>
+
+                <div class="col-sm-3">
+                  <span >Objeto: </span>
+                </div>
+                <div class="col-sm-9">
+                  <span >{{ row.objeto}}</span>
+                </div>
+                <div class="linha"></div>
+
+                <div class="col-sm-3">
+                  <span >Número da Licitação: </span>
+                </div>
+                <div class="col-sm-9">
+                  <span >{{ row.numeroLicitacao}}</span>
+                </div>
+                <div class="linha"></div>
+
+                <div class="col-sm-3">
+                  <span >Valor Proposta: </span>
+                </div>
+                <div class="col-sm-9">
+                  <span >{{ row.valorProposta}}</span>
+                </div>
+                <div class="linha"></div>
+
+                <div class="col-sm-3">
+                  <span >Contratante: </span>
+                </div>
+                <div class="col-sm-9">
+                  <span >{{ row.contratante}}</span>
+                </div>
+                <div class="linha"></div>
+
+                <div class="col-sm-3">
+                  <span >Número do Processo: </span>
+                </div>
+                <div class="col-sm-9">
+                  <span >{{ row.numeroProcessoLicitacao}}</span>
+                </div>
+                <div class="linha"></div>
+
+                <div class="col-sm-3">
+                  <span >Número do Contrato: </span>
+                </div>
+                <div class="col-sm-9">
+                  <span >{{ row.numeroContrato}}</span>
+                </div>
+                <div class="linha"></div>
+
+                <div class="col-sm-3">
+                  <span >Data Início: </span>
+                </div>
+                <div class="col-sm-9">
+                  <span >{{ row.dataInicio}}</span>
+                </div>
+                <div class="linha"></div>
+
+                <div class="col-sm-3">
+                  <span >Data Final: </span>
+                </div>
+                <div class="col-sm-9">
+                  <span >{{ row.dataFinal}}</span>
+                </div>
+                <div class="linha"></div>
+              </div>
+            </div>
+        </div>
+    </ng-template>
+  </ngx-datatable-row-detail>
+
+    <!-- icone expandir -->
+      <ngx-datatable-column
+      [width]="100"
+      [flexGrow]="4"
+      [resizeable]="false"
+      [sortable]="false"
+      [draggable]="false"
+      [canAutoResize]="false"
+    >
+      <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+        <a
+          href="javascript:void(0)"
+          [class.datatable-icon-right]="!expanded"
+          [class.datatable-icon-down]="expanded"
+          title="Expand/Collapse Row"
+          (click)="toggleExpandRow(row)"
+        >
+        </a>
+      </ng-template>
+    </ngx-datatable-column>
+
+
+    <ngx-datatable-column
+    name="CPF/CNPJ Proponente"
+    [sortable]="true"
+    [flexGrow]="1"
+    [minWidth]="200"
+    >
+
+    <ng-template let-value="row.cpfCnpjProponente" ngx-datatable-cell-template>
+      {{ value  }}
+    </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Nome do Fornecedor"  [flexGrow]="1">
+    <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+      <span class="mobile-hidden">{{ column.name }}</span>
+    </ng-template>
+    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+      <span class="mobile-hidden">{{ row.fornecedor }}</span>
+    </ng-template>
+    </ngx-datatable-column>
+
+
+
+</ngx-datatable>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-body ">
         <h4 class="display-5">Consulta de Contratos do Governo da Paraíba e João Pessoa-PB</h4>
       </div>
       <div class="card-footer ">

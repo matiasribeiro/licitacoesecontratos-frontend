@@ -1,14 +1,14 @@
 import { element } from 'protractor';
 import { DialogComponent } from './../dialog/dialog.component';
 import { Contratos } from './../../modelos/contratos';
-import { ServicosService } from './../../servicos.service';
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ColumnMode, DatatableComponent, SelectionType } from '@swimlane/ngx-datatable';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {MatDialog} from '@angular/material/dialog';
 import { Chart, ChartDataSets } from 'chart.js';
 import { Observable } from 'rxjs';
 import { Color, Label } from 'ng2-charts';
+import { ServicosService } from 'src/app/servicos.service';
 
 @Component({
   selector: 'app-licitacao',
@@ -42,6 +42,11 @@ export class LicitacaoComponent implements OnInit {
   formulario: FormGroup;
 
   contratos: Contratos;
+
+  @ViewChild('nameSummaryCell')
+  nameSummaryCell: TemplateRef<any>;
+
+
 
   quantidadeLicitacaoGOV = '';
   quantidadeLicitacaoJP = '';
@@ -100,8 +105,6 @@ export class LicitacaoComponent implements OnInit {
          this.dialog.closeAll();
       });
 
-
-
     this.formulario = this.formBuilder.group({
 
       numeroBusca: ['', [
@@ -152,39 +155,27 @@ export class LicitacaoComponent implements OnInit {
 
 
   // -------------------------------- Gráfico Linha ---------------------------------
-    this.dadoslineChart = [];
-    this.dadoslinhajp = [];
-    this.servicos.getAnosVsValores(this._entidade_jp)
-    .subscribe(dados => {
 
-      const mapValor = dados.map((v, index, array) => {
-        return v.valorTotal;
+      this.dadoslineChart = [];
+      this.servicos.getAnosEntidadeGovernamentalValores()
+      .subscribe(dados => {
+
+        const mapGovValor = [];
+        const mapJPValor = [];
+        dados.forEach(element => {
+
+          if(element.entidadeGovernamental === 'Governo da Paraíba'){
+            mapGovValor.push(element.valorTotal)
+          }
+          else if(element.entidadeGovernamental === 'Prefeitura Municipal de João Pessoa'){
+            mapJPValor.push(element.valorTotal)
+          }
+
+        });
+
+        this.dadoslineChart = [ {data: mapGovValor, label: 'Governo do Estado da Paraíba'}, {data: mapJPValor, label: 'Prefeitura Municipal de João Pessoa' } ];
       })
 
-      const mapAno = dados.map((v, index, array) => {
-        return v.anoHomologacao;
-      })
-
-      this.dadoslinhajp = {data: mapValor, label: 'Prefeitura Municipal de João Pessoa'};
-
-    })
-
-    this.servicos.getAnosVsValores(this._entidade_gov_pb)
-    .subscribe(dados => {
-
-      const mapValor = dados.map((v, index, array) => {
-        return v.valorTotal;
-      })
-
-      const mapAno = dados.map((v, index, array) => {
-        return v.anoHomologacao;
-      })
-
-      this.dadoslineChart = [ {data: mapValor, label: 'Governo do Estado da Paraíba'}, this.dadoslinhajp ];
-
-
-
-    })
 
     // -------------------------------- Gráfico Radar ---------------------------------
     this.servicos.getAnosVsValores(this._entidade_jp)
