@@ -8,7 +8,7 @@ export interface Contratos {
 	fornecedor: string;
 	Objeto: string;
 	valorProposta: string;
-	cpfCnpjProponente: string;
+	cpfCnpjFornecedor: string;
 	numeroLicitacao: string;
 
 }

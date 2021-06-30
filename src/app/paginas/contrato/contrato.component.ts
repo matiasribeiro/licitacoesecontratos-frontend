@@ -91,10 +91,11 @@ export class ContratoComponent implements OnInit {
        // push our inital complete list
        this.rows = dados;
        this.renderizacao_tela = true;
+       this.dialog.closeAll();
 
     });
 
-    this.dialog.closeAll();
+
 
     this.formulario = this.formBuilder.group({
 
