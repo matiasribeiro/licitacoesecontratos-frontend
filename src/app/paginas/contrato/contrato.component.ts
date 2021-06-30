@@ -53,27 +53,6 @@ export class ContratoComponent implements OnInit {
   }
 
 
-  getFornecedor(){
-
-
-    let doc = this.formFornecedor.controls.numdocumento.value.trim()
-    this.servicos.getFornecedor(doc)
-    .subscribe(dados => {
-
-
-      // cache our list
-      this.tempDadosFornecedor = [...dados];
-
-      // push our inital complete list
-      this.rowsFornecedor = dados;
-
-    });
-
-    this.renderizacao_fornecedor = true;
-
-  }
-
-
 
 
   ngOnInit(): void {
@@ -135,12 +114,24 @@ export class ContratoComponent implements OnInit {
       });
 
       this.dadosChartBar = [ {data: mapContratosGovValor, label: 'Governo do Estado da Paraíba'}, {data: mapContratosJPValor, label: 'Prefeitura Municipal de João Pessoa' } ];
+
     })
 
 
 
   }
 
+  getFornecedor(){
+    let doc = this.formFornecedor.controls.numdocumento.value.trim()
+    this.servicos.getFornecedor(doc)
+    .subscribe(dados => {
+      // cache our list
+      this.tempDadosFornecedor = [...dados];
+      // push our inital complete list
+      this.rowsFornecedor = dados;
+    });
+    this.renderizacao_fornecedor = true;
+  }
 
 
   updateFilterNumero() {

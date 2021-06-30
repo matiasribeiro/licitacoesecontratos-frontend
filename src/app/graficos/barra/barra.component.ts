@@ -25,6 +25,7 @@ export class BarraComponent implements OnInit {
 
   ngOnInit(): void {
 
+
   }
 
   public barChartOptions: (ChartOptions & { annotation: any }) = {
