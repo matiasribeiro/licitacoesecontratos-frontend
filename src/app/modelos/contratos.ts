@@ -6,9 +6,10 @@ export interface Contratos {
 	dataFinal: string;
 	contratante: string;
 	fornecedor: string;
-	Objeto: string;
+	objeto: string;
 	valorProposta: string;
 	cpfCnpjFornecedor: string;
+  entidadeGovernamental: string;
 	numeroLicitacao: string;
 
 }

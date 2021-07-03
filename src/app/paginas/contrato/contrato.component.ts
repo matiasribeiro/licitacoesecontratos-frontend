@@ -71,7 +71,6 @@ export class ContratoComponent implements OnInit {
        this.rows = dados;
        this.renderizacao_tela = true;
        this.dialog.closeAll();
-
     });
 
 
@@ -187,9 +186,7 @@ export class ContratoComponent implements OnInit {
 
 
   formatarMoeda(moeda): any {
-
-    /* alguns valores vem errado na casa de Bilhões do GOV, desconsidere esse valor no IF */
-    if((moeda === '') || (moeda.length >= 16)){
+    if(moeda === ''){
       return '';
     }
     if((moeda != undefined)){

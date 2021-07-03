@@ -407,30 +407,12 @@
           </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="Número"  [flexGrow]="1">
-          <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-            <span class="mobile-hidden">{{ column.name }}</span>
-          </ng-template>
-          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-            <span class="mobile-hidden">{{ row.numeroContrato }}</span>
-          </ng-template>
-        </ngx-datatable-column>
-
-        <ngx-datatable-column name="Objeto" [flexGrow]="1">
-          <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-            <span class="mobile-hidden">{{ column.name }}</span>
-          </ng-template>
-          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-            <span class="mobile-hidden">{{ value }}</span>
-          </ng-template>
-        </ngx-datatable-column>
-
         <ngx-datatable-column name="Valor da Proposta" [flexGrow]="1">
           <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
             <span class="mobile-hidden">{{ column.name }}</span>
           </ng-template>
           <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-            <span class="mobile-hidden">{{ formatarMoeda(value) }}</span>
+            <span class="mobile-hidden">{{ formatarMoeda(row.valorProposta) }}</span>
           </ng-template>
         </ngx-datatable-column>
 
