@@ -16,8 +16,8 @@ import { AnosEntidadeGovernamentalValores } from './modelos/ano_ent_valor';
 import { FornecedorContrato } from './modelos/fornecedor_contrato';
 
 
- /* const API_ENDPOINT = 'https://apilicitacoesecontratos.herokuapp.com'; */
- const API_ENDPOINT = 'http://localhost:8080';
+ const API_ENDPOINT = 'https://apilicitacoesecontratos.herokuapp.com';
+ /* const API_ENDPOINT = 'http://localhost:8080'; */
 
 
 
