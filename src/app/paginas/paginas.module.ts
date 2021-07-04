@@ -11,7 +11,7 @@ import { DialogComponent } from './dialog/dialog.component';
 import { ContratoComponent } from './contrato/contrato.component';
 import { MenuComponent } from './menu/menu.component';
 import { GraficosModule } from '../graficos/graficos.module';
-
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,9 @@ import { GraficosModule } from '../graficos/graficos.module';
     MatProgressBarModule,
     MatDialogModule,
     ChartsModule,
-    GraficosModule
+    GraficosModule,
+    MatTableModule
+
 
   ],
   providers: [

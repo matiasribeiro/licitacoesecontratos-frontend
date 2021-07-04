@@ -15,6 +15,7 @@ import { DialogComponent } from '../dialog/dialog.component';
 export class ContratoComponent implements OnInit {
 
   @ViewChild(DatatableComponent) table: DatatableComponent;
+  @ViewChild(DatatableComponent) tableFornecedor: DatatableComponent;
 
   formulario: FormGroup;
 
@@ -57,9 +58,7 @@ export class ContratoComponent implements OnInit {
 
   ngOnInit(): void {
 
-
     this.dialog.open(DialogComponent,  {panelClass: 'myapp-no-padding-dialog'});
-
 
     this.servicos.getContratos()
     .subscribe(dados => {
@@ -72,8 +71,6 @@ export class ContratoComponent implements OnInit {
        this.renderizacao_tela = true;
        this.dialog.closeAll();
     });
-
-
 
     this.formulario = this.formBuilder.group({
 
@@ -120,16 +117,20 @@ export class ContratoComponent implements OnInit {
 
   }
 
+  limpar(){
+    this.rowsFornecedor = [];
+    this.renderizacao_fornecedor = false;
+  }
+
   getFornecedor(){
     let doc = this.formFornecedor.controls.numdocumento.value.trim()
-    this.servicos.getFornecedor(doc)
-    .subscribe(dados => {
-      // cache our list
-      this.tempDadosFornecedor = [...dados];
-      // push our inital complete list
-      this.rowsFornecedor = dados;
-    });
-    this.renderizacao_fornecedor = true;
+    if(doc.length != 0){
+      this.servicos.getFornecedor(doc)
+      .subscribe(dadosFornecedor => {
+        this.rowsFornecedor = dadosFornecedor;
+      });
+      this.renderizacao_fornecedor = true;
+    }
   }
 
 
@@ -200,6 +201,7 @@ export class ContratoComponent implements OnInit {
   toggleExpandRow(row) {
     this.table.rowDetail.toggleExpandRow(row);
   }
+
 
   get formGroup(){
     return this.formulario.controls;
