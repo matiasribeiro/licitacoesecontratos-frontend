@@ -9,16 +9,16 @@ import { CommonModule } from '@angular/common';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { DialogComponent } from './dialog/dialog.component';
 import { ContratoComponent } from './contrato/contrato.component';
-import { MenuComponent } from './menu/menu.component';
 import { GraficosModule } from '../graficos/graficos.module';
 import { MatTableModule } from '@angular/material/table';
+import { SobreComponent } from './sobre/sobre.component';
 
 @NgModule({
   declarations: [
     LicitacaoComponent,
     DialogComponent,
     ContratoComponent,
-    MenuComponent
+    SobreComponent
   ],
   imports: [
     CommonModule,
