@@ -124,6 +124,11 @@ export class ContratoComponent implements OnInit {
 
   getFornecedor(){
     let doc = this.formFornecedor.controls.numdocumento.value.trim()
+
+    if(doc.length === 11){
+      doc = "***" +doc.slice(3,9)+"**";
+    }
+
     if(doc.length != 0){
       this.servicos.getFornecedor(doc)
       .subscribe(dadosFornecedor => {
